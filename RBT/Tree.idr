@@ -18,9 +18,9 @@ compareBranch m n l e g with (cmp m n)
   compareBranch n n l e g | CmpEQ = e
   compareBranch (n + (S x)) n l e g | (CmpGT x) = g
 
-prf : (x : Nat) -> CmpNat x x -> compareBranch x x l e g = e
-prf x prf = case prf of
-              CmpEQ => ?asdf
+prf : (x : Nat) -> compareBranch x x l e g = e
+prf x with (cmp x x)
+  | CmpEQ = ?asdf
 
 --------------------------------------------------------------------------------
 

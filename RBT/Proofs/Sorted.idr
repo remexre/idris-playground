@@ -24,9 +24,24 @@ prfMakeBlackPreservesSorted : (tree : RBT) -> All Sorted tree -> All Sorted (mak
 prfMakeBlackPreservesSorted E () = ()
 prfMakeBlackPreservesSorted (T _ _ _ _) prf = prf
 
-prfBalancePreservesSorted : (tree : RBT) -> All Sorted tree -> All Sorted (makeBlack tree)
+{-
+prfBalancePreservesSorted : (tree : RBT) -> All Sorted tree -> All Sorted (balance tree)
 prfBalancePreservesSorted E () = ()
-prfBalancePreservesSorted (T _ _ _ _) prf = prf
+prfBalancePreservesSorted (T B (T R (T R a x b) y c) z d)
+  (((allLTay, ltxy, allLTby),
+    allGTcy),
+   (((allLTaz, ltxz, allLTbz), ltyz, allLTcz), allGTdz),
+   sortedD) =
+     ((allLTax, ?allGTbx),
+      ((allLTay, ltxy, allLTby), allGTcy, ltyz, ?allGTdy),
+      allLTcz, allGTdz) where
+        allLTax : AllLT a x
+        allLTax = ?allLTax1 (prfBalancePreservesSorted (T R (T R a x b) y c))
+prfBalancePreservesSorted (T B (T R a x (T R b y c)) z d) prf = ?jajdsa
+prfBalancePreservesSorted (T B a x (T R (T R b y c) z d)) prf = ?jajjsnd
+prfBalancePreservesSorted (T B a x (T R b y (T R c z d))) prf = ?jajfwonk
+prfBalancePreservesSorted (T c l x r) (sortedL, (allLTlx, allGTrx), sortedR) = ?aljsdn_3
+-}
 
 {-
 prfInsPreservesSorted : (tree : RBT) -> (y : Nat) -> All Sorted tree -> All Sorted (ins y tree)
